@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { RxCross2 } from "react-icons/rx";
 import "./Animation.css";
 
 const MyOrder = () => {
@@ -110,12 +111,14 @@ const MyOrder = () => {
                     ) : (
                       <>
                         <div className="w-full rounded-md border border-slate-500">
-                          <button
-                            onClick={() => handleOnDetails(item._id)}
-                            className=""
-                          >
-                            <div className="">Close</div>
-                          </button>
+                          <div className="flex flex-row-reverse">
+                            <button
+                              onClick={() => handleOnDetails(item._id)}
+                              className=""
+                            >
+                              <div className="bg-red-500 h-4 w-4"><RxCross2/></div>
+                            </button>
+                          </div>
 
                           {/* <div className="animated-line">
                             <div className="color-transition"></div>
@@ -124,49 +127,54 @@ const MyOrder = () => {
                           {item.Status != "cancelled" ? (
                             <div className="m-auto ">
                             <div className="flex w-[80%] m-auto">
-                              <div className="w-[20%] m-auto">
+                              <div className="w-[15%] m-auto">
                                 Order Confirmed
                               </div>
                               <div className="w-[20%] m-auto">Shipped</div>
-                              <div className="w-[20%] m-auto">
+                              <div className="w-[30%] m-auto">
                                 Out for Delivery
                               </div>
-                              <div className="w-[20%] m-auto">Delivered</div>
+                              <div className="w-[15%] m-auto">Delivered</div>
                             </div>
                             
 
                             <div className="flex items-center justify-center w-[60%] m-auto mt-1">
-                              <div className="flex items-center justify-center w-2 h-2 bg-green-300 rounded-full"></div>
                               {/* <div className="circle"></div> */}
+                              <div className="flex items-center justify-center w-2 h-2 bg-green-300 rounded-full"></div>
+                        
                               <div className="animated-line">
-                              {item.ShipTime == "" && <div className="shipped"></div> }
+                              {item.ShipTime != "" && <div className="shipped"></div> }
                               </div>
                               <div className="flex items-center justify-center w-2 h-2 bg-green-300 rounded-full"></div>
                               
                               <div className="animated-line">
-                              {item.OnWayTime == "" && <div className="onway"></div> }
+                              {item.OnWayTime != "" && <div className="onway"></div> }
                               </div>
                               <div className="flex items-center justify-center w-2 h-2 bg-green-300 rounded-full"></div>
                               
                               <div className="animated-line">
-                              {item.FinalTime == "" && <div className="delivered"></div> }
+                              {item.FinalTime != "" && <div className="delivered"></div> }
                               </div>
                               <div className="flex items-center justify-center w-2 h-2 bg-green-300 rounded-full"></div>
                               
                             </div>
 
                             <div className="flex w-[80%] m-auto text-sm mt-1">
-                              <div className="w-[25%]">
-                                {item.OrderTime.substring(0, 10)}
+                              <div className="w-[28%]">
+                                {item.OrderTime.substring(0, 10)} 
+                                {/* <div>{item.OrderTime.substring(12,20)}</div> */}
                               </div>
                               <div className="w-[25%]">
-                                {item.ShipTime.substring(0, 10)}
+                                {item.ShipTime}
+                                {/* <div>{item.ShipTime.substring(12,20)}</div> */}
                               </div>
-                              <div className="w-[25%]">
-                                {item.OnWayTime.substring(0, 10)}
+                              <div className="w-[50%]">
+                                {item.OnWayTime}
+                                {/* <div>{item.OnWayTime.substring(12,20)}</div> */}
                               </div>
-                              <div className="w-[25%]">
-                                {item.FinalTime.substring(0, 10)}
+                              <div className="w-[28%]">
+                                {item.FinalTime}
+                                {/* <div>{item.FinalTime.substring(12,20)}</div> */}
                               </div>
                             </div>
                           </div>
@@ -193,7 +201,7 @@ const MyOrder = () => {
                                   {item.OrderTime.substring(0, 10)}
                                 </div>
                                 <div className="w-[40%] m-auto">
-                                  {item.OrderTime.substring(0, 10)}
+                                  {item.FinalTime.substring(0, 10)}
                                 </div>
                       
                               </div>

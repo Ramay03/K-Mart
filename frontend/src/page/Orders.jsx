@@ -197,9 +197,55 @@ export const Orders = () => {
                               Cancel
                             </button>
                           </div>
+
+                          <div className="bg-slate-100 m-auto m-2">
+                            <div className="m-2 flex gap-2 justify-center p-3 overflow-scroll scrollbar-none scroll-smooth transition-all">
+                              {/* <div className=" items-center pr-4"> Items</div> */}
+                              {item.Items.map((product) => {
+                                return (
+                                  <>
+                                    <div className="w-full min-w-[200px] max-w-[200px] sm:min-w-[200px] sm:max-w-[200px] md:min-w-[200px] lg:min-w-[250px] md:max-w-[200px] lg:max-w-[250px] bg-white hover:shadow-lg drop-shadow-lg px-1">
+                                      <div className="h-48 flex flex-col justify-center items-center">
+                                        <img
+                                          src={product.image}
+                                          className="h-full"
+                                        ></img>
+                                      </div>
+                                      <h3 className="text-center text-sm min-h-20">
+                                        {product.name}
+                                      </h3>
+                                      <p className="text-center m-auto text-sm">
+                                        <span className="text-sm">Rs-</span>
+                                        <span className="text-lg font-bold">
+                                          {" "}
+                                          {product.price}
+                                        </span>
+                                        <span className="">
+                                          /{product.quantity}
+                                        </span>
+                                        <span className="ml-6">
+                                          MRP: {product.mrp}
+                                        </span>
+                                      </p>
+                                      <p className="text-center m-auto text-sm">
+                                        <span className="">
+                                          Quantity : {product.qty}
+                                        </span>
+                                        <span className="ml-10 ">
+                                          Total : Rs{product.total}
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </>
+                                );
+                              })}
+                            </div>
+                          </div>
+
                         </div>
                       )}
                     </div>
+                    
                   </>
                 );
               })}

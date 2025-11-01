@@ -12,7 +12,7 @@ const Footer = () => {
             <div>K-MART, A kirana store</div>
             <div>Bazar Chowk Sodalpur</div>
             <div>Dist-Harda, Madhya Pradesh</div>
-            <div>Mob-7523784576</div>
+            <div>Mob-7898664877</div>
             <div>Created by - Ramay</div>
         </div>
       </div>

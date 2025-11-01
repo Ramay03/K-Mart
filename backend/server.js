@@ -205,7 +205,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
 app.get("/order", async (req, res) => {
   const data = await OrderModel.find({});
-  res.send(JSON.stringify(data));
+  res.send(JSON.stringify(data.reverse()));
 });
 
 app.get("/order/:userId", async (req, res) => {
@@ -223,25 +223,31 @@ app.put("/status-change", async (req, res) => {
   const { OrderId, NewStatus } = req.body;
   // console.log(OrderId)
   try {
-    const time = new Date();
+
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so we add 1
+    const year = currentDate.getFullYear();
+    const time = `${day}/${month}/${year}`;
+
     let orderData = {};
     if (NewStatus == "onway") {
       orderData = await OrderModel.findOneAndUpdate(
         { _id: OrderId },
-        { $set: { Status: NewStatus, OnWayTime: time.toLocaleString() } },
+        { $set: { Status: NewStatus, OnWayTime: time } },
         { new: true }
       );
     } else if (NewStatus == "shipped") {
       orderData = await OrderModel.findOneAndUpdate(
         { _id: OrderId },
-        { $set: { Status: NewStatus, ShipTime: time.toLocaleString() } },
+        { $set: { Status: NewStatus, ShipTime: time } },
         { new: true }
       );
       // orderData.ShipTime = time.toLocaleString();
     } else {
       orderData = await OrderModel.findOneAndUpdate(
         { _id: OrderId },
-        { $set: { Status: NewStatus, FinalTime: time.toLocaleString() } },
+        { $set: { Status: NewStatus, FinalTime: time} },
         { new: true }
       );
       // orderData.FinalTime = time.toLocaleString();
